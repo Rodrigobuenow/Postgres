@@ -68,48 +68,48 @@ VALUES
 Escreva comandos SELECT para os itens abaixo:
 
 a) o título, o ano e o diretor de todos os filmes.
-SELECT titulo, ano, diretor FROM filmes;
+>>SELECT titulo, ano, diretor FROM filmes;
 
 b) os filmes de terror de 2010.
-SELECT * FROM filmes WHERE genero = 'Crime' AND ano >= 1992;
+>>SELECT * FROM filmes WHERE genero = 'Crime' AND ano >= 1992;
 
 c) o título e o ano dos filmes com duração maior do que 2 horas.
-SELECT titulo, ano FROM filmes WHERE duracao_minutos > 120;
+>>SELECT titulo, ano FROM filmes WHERE duracao_minutos > 120;
 
 d) o título e a duração das comédias lançadas na década de 90 com pelo menos 1 hora e 20 minutos de duração, dos diretores cujos nomes começam pela letra ‘J’. Pesquise sobre o operador LIKE.
-SELECT titulo, duracao_minutos FROM filmes WHERE genero = 'Comédia' AND ano >= 1990 AND ano < 2000 AND duracao_minutos >= 80;
+>>SELECT titulo, duracao_minutos FROM filmes WHERE genero = 'Comédia' AND ano >= 1990 AND ano < 2000 AND duracao_minutos >= 80;
 
 e) o título, o gênero e o valor do ingresso dos filmes a partir de 2006, mostrando os valores inflacionados em 8,63%.
-SELECT titulo, genero, valor_ingresso * 1.0863 AS valor_inflacionado FROM filmes WHERE ano >= 2006;
+>>SELECT titulo, genero, valor_ingresso * 1.0863 AS valor_inflacionado FROM filmes WHERE ano >= 2006;
 
 f) a quantidade de filmes de ação com ingressos que custam mais do que R$ 20,00.
-SELECT COUNT(*) FROM filmes WHERE genero = 'Ação' AND valor_ingresso > 20.00;
+>>SELECT COUNT(*) FROM filmes WHERE genero = 'Ação' AND valor_ingresso > 20.00;
 
 g) os nomes de todos os diretores cadastrados, sem repetir, e em ordem alfabética.
-SELECT DISTINCT diretor FROM filmes ORDER BY diretor;
+>>SELECT DISTINCT diretor FROM filmes ORDER BY diretor;
 
 &nbsp;
 
 Escreva comandos UPDATE para os itens abaixo:
 
 a) aumentar em 10 minutos a duração dos filmes em que participa a atriz Angelina Jolie.
-UPDATE filmes SET duracao_minutos = duracao_minutos + 10 WHERE atores_principais LIKE '%Daisy Ridley%';
+>>UPDATE filmes SET duracao_minutos = duracao_minutos + 10 WHERE atores_principais LIKE '%Daisy Ridley%';
 
 b) dar um desconto de 10% para os filmes de ação do ano 2011.
-UPDATE filmes SET valor_ingresso = valor_ingresso * 0.9 WHERE genero = 'Ação' AND ano = 2011;
+>>UPDATE filmes SET valor_ingresso = valor_ingresso * 0.9 WHERE genero = 'Ação' AND ano = 2011;
 
 c) acrescentar um asterisco (*) no final dos títulos dos filmes com duração menor ou igual a 30 minutos. Use o operador || para concatenar strings.
-UPDATE filmes SET titulo = CONCAT(titulo, '*') WHERE duracao_minutos <= 90;
+>>UPDATE filmes SET titulo = CONCAT(titulo, '*') WHERE duracao_minutos <= 90;
 
 &nbsp;
 
 Escreva comandos DELETE para os itens abaixo:
 
 a) excluir os filmes com valor de ingresso superior a R$ 60,00
-DELETE FROM filmes WHERE valor_ingresso > 60.00;
+>>DELETE FROM filmes WHERE valor_ingresso > 60.00;
 
 b) excluir os filmes em cujo título aparece a palavra “assombrado” ou cujo sobrenome do diretor é “Johnson”. Use o operador LIKE para realizar essa questão.
-DELETE FROM filmes WHERE titulo LIKE '%Star Wars%' OR diretor LIKE '%Columbus%';
+>>DELETE FROM filmes WHERE titulo LIKE '%Star Wars%' OR diretor LIKE '%Columbus%';
 
 
 ## Exercício 2
