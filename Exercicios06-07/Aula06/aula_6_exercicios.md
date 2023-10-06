@@ -257,14 +257,55 @@ VALUES('CC3320', 'CC1310');
 Executar as seguintes consultas:
 
 - Recuperar uma lista de todas as disciplinas e notas de Silva.
-- Listar os nomes dos alunos que realizaram a disciplina Banco de dados oferecida no segundo semestre de 2008 e suas notas nessa turma.
-- Listar os pré-requisitos do curso de Banco de dados.
+```sql
+SELECT d.nome_disciplina, he.nota
+FROM disciplinas d
+JOIN turmas t ON d.numero_disciplina = t.numero_disciplina
+LEFT JOIN historico_escolar he ON t.identificacao_turma = he.identificacao_turma
+LEFT JOIN alunos a ON he.numero_aluno = a.numero_aluno
+WHERE a.nome = 'Silva';
+```
 
+- Listar os nomes dos alunos que realizaram a disciplina Banco de dados oferecida no segundo semestre de 2008 e suas notas nessa turma.
+```sql
+SELECT a.nome, he.nota
+FROM alunos a
+JOIN historico_escolar he ON a.numero_aluno = he.numero_aluno
+JOIN turmas t ON he.identificacao_turma = t.identificacao_turma
+JOIN disciplinas d ON t.numero_disciplina = d.numero_disciplina
+WHERE d.nome_disciplina = 'Banco de dados' AND t.semestre = 'Segundo' AND t.ano = 2008;
+```
+
+- Listar os pré-requisitos do curso de Banco de dados.
+```sql
+SELECT d2.nome_disciplina AS 'Disciplina de Banco de Dados', d1.nome_disciplina AS 'Pré-Requisito'
+FROM disciplinas d1
+JOIN pre_requisitos pr ON d1.numero_disciplina = pr.numero_pre_requisito
+JOIN disciplinas d2 ON pr.numero_disciplina = d2.numero_disciplina
+WHERE d2.nome_disciplina = 'Banco de dados';
+```
 
 Executar as seguintes atualizações no banco de dados
 
 - Alterar o tipo de aluno de Silva para segundo ano.
+```sql
+UPDATE alunos
+SET tipo_aluno = '2'
+WHERE nome = 'Silva';
+```
+
 - Criar outra turma para a disciplina Banco de dados para este semestre.
+```sql
+INSERT INTO turmas (numero_disciplina, semestre, ano, professor)
+VALUES ('CC3380', 'Segundo', 2023, 'NovoProfessor');
+```
+
 - Inserir uma nota A para Silva na turma Banco de dados do último semestre.
+```sql
+UPDATE historico_escolar
+SET nota = 'A'
+WHERE numero_aluno = 17
+AND identificacao_turma = (SELECT MAX(identificacao_turma) FROM turmas WHERE numero_disciplina = 'CC3380');
+```
 
 &nbsp;
